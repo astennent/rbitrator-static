@@ -1,0 +1,61 @@
+<div id="SetupPage" ng-if="isOnSetup()" ng-controller='setupController' col-sm-3 col-md-10 >
+    <div class="form-group">
+        <label for="caseIdHeader">Case Id Header</label>
+        <input type="text" class="form-control" id='caseIdHeader' ng-model='project.caseIdKey'>
+    </div>
+    <div class="form-group">
+        <label for="coderHeader">Coder Header</label>
+        <input type="text" class="form-control" id='coderHeader' ng-model='project.coderIdKey'>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="coderFiles">Coder Files</label>
+        <input type="file" multiple file-reader='coder1Content' class="form-control" id='coderFiles' accept=".csv" >
+    </div>
+    <div class="form-group">
+        <label for="arbitratorFile">Exported arbitrator file:</label>
+        <input type="file" file-reader='arbitratorContent' class="form-control" id='arbitratorFile' accept=".csv">
+    </div>
+
+    <hr>
+    <div id="normalizationTable">
+        <h4> Remapping Column Names
+            <button ng-show="!adding" class="btn btn-success" ng-click="startAdding()"
+                    tooltip-placement="right" uib-tooltip="Add new column name mapping">
+                <i class='glyphicon glyphicon-plus'></i>
+            </button>
+            <button ng-show="adding" class="btn btn-danger" ng-click="cancelAdding()"
+                    tooltip-placement="right" uib-tooltip="Cancel new mapping">
+                <i class='glyphicon glyphicon-remove'></i>
+            </button>
+        </h4>
+        <table class="table table-striped">
+            <th  style="width:46%"> Old Name </th> <th style="width:46%"> New Name </th> <th style="width:4%"></th> <th style="width:4%"></th>
+            <tr ng-show="adding" class="adding-row">
+                <td>  <input type="text" ng-model="addedOld" class="form-control"> </td>
+                <td> <input type="text" ng-model="addedNew" class="form-control"> </td>
+
+                <td> <button class="btn btn-success" ng-click="finishAdding()">
+                    <i class='glyphicon glyphicon-ok'></i>
+                </button> </td>
+
+                <td> <button class="btn btn-danger" ng-click="cancelAdding()"
+                             tooltip-placement="left" uib-tooltip="Cancel new column name mapping">
+                    <i class='glyphicon glyphicon-remove'></i>
+                </button> </td>
+            </tr>
+            <tr ng-repeat="row in normalizedKeyMap"
+                ng-class="isEditing(row.oldName) ? 'editing-row' : ''">
+                <td> {{row.oldName}} </td>
+                <td> {{row.newName}} </td>
+                <td> <button class="btn btn-info" ng-click="edit(row.oldName, row.newName)">
+                    <i class='glyphicon glyphicon-edit'></i>
+                </button> </td>
+                <td> <button class="btn btn-danger" ng-click="removeMapping(row.oldName)">
+                    <i class='glyphicon glyphicon-remove'></i>
+                </button> </td>
+            </tr>
+        </table>
+    </div>
+
+</div>

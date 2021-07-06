@@ -1,0 +1,99 @@
+<div ng-if="isOnCase()"
+     class="main"
+     id="CasePage"
+     ng-controller="caseController">
+
+        
+    <h2 class="page-header"> {{caseTitle}} 
+        <button class="flag-button" ng-click="cycleFlag()">
+            <span class="glyphicon glyphicon-flag flag-{{caseInfo.flag}}" ></span>
+        </button> 
+    </h2> 
+    <div>
+        <span class="hide-arbitrated-container">
+            <input id='hide-arb' type="checkbox" ng-model="hideArbitrated.value"/>
+            <label for="hide-arb"> Hide Arbitrated Rows </label>
+        </span>
+        <span class="hide-blanks-container">
+            <input id='hide-blanks' type="checkbox" ng-model="hideBlanks.value"/>
+            <label for="hide-blanks"> Hide Blank Rows </label>
+        </span>
+        <button id="auto-arbitrate-button"
+                class="btn btn-success"
+                ng-click="autoResolve()"
+                ng-disabled="!canAutoResolve()"> Auto-arbitrate
+        </button> 
+    </div>
+    <div class="progress-container">
+        <div class="progress">
+            <span class="progress-bar"
+                 role="progressbar"
+                 ng-class="{'progress-bar-success': progress() === 100}"
+                 aria-valuenow="{{progress()}}"
+                 aria-valuemin="0" aria-valuemax="100"
+                 style="width: {{progress()}}%;">
+            </span>
+        </div>
+        <small> {{progress()}}%</small>
+    </div>
+
+    <table class="table table-striped" ng-class="{'hide-arbitrated': hideArbitrated.value, 'hide-blanks': hideBlanks.value}">
+        <thead>
+        <tr>
+            <th style="width: 9%">#</th>
+            <th style="width: 28%">Coder 1 ({{coder1Name}})</th>
+            <th style="width: 28%">Coder 2 ({{coder2Name}})</th>
+            <th style="width: 35%">Rbitrator</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat='questionId in questionIds' 
+            ng-class="{
+                'arbitrated-row': isArbitrated(questionId),
+                'unarbitrated-row': !isArbitrated(questionId),
+                'blank-row': isBlank(questionId)
+           }">
+            <div class="form-group">
+                <td> {{questionId}} </td>
+                <td>
+                    <span ng-if="!expandedRows[questionId]" class="coder-label"> {{coder1[questionId] | limitTo:100 }} </span>
+                    <span ng-if="expandedRows[questionId]" class="coder-label"> {{coder1[questionId] }} </span>
+                                    <span ng-if="coder1[questionId].length > 100">
+                                        <hr>
+                                        <button class="button" ng-click="expandedRows[questionId] = !expandedRows[questionId]"> <span class="glyphicon glyphicon-option-horizontal"></span> </button>
+                                    </span>
+                </td>
+                <td>
+                    <span ng-if="!expandedRows[questionId]" class="coder-label"> {{coder2[questionId] | limitTo:100 }} </span>
+                    <span ng-if="expandedRows[questionId]" class="coder-label"> {{coder2[questionId] }} </span>
+                                    <span ng-if="coder2[questionId].length > 100">
+                                        <hr>
+                                        <button class="button" ng-click="expandedRows[questionId] = !expandedRows[questionId]"> <span class="glyphicon glyphicon-option-horizontal"></span> </button>
+                                    </span>
+                </td>
+                <td>
+                    <button tabindex=-1 type="button" class="btn btn-default accept-button"
+                            ng-click='acceptCoder(questionId, coder1)'> 1
+                    </button>
+                    <button tabindex=-1 type="button" class="btn btn-default accept-button"
+                            ng-click='acceptCoder(questionId, coder2)'> 2
+                    </button>
+                    <input class="arbitrator-textbox"
+                           type='text' ng-model='arbitrator[questionId].value'
+                           ng-enter='enableArbitration(questionId)'
+                           ng-change='onArbitrationChange(questionId)'>
+                    </input>
+                    <button tabindex=-1 type="button"
+                            class="btn arbitrate-button"
+                            ng-class="isArbitrated(questionId) ? 'btn-info' : 'btn-success'"
+                            ng-click='toggleArbitration(questionId)'>
+                        <span ng-if="isArbitrated(questionId)"> Clear </span>
+                        <span ng-if="!isArbitrated(questionId)"> Arbitrate </span>
+                    </button>
+                </td>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+</div>

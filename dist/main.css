@@ -1,0 +1,222 @@
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  padding-top: 50px;
+}
+
+#main {
+  margin-top: -50px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+body {
+  background-color: #fbfbfb;
+  overflow-y: scroll;
+  /* required for apps */
+}
+
+#TopBar {
+  color: #eee;
+}
+#TopBar .glyphicon {
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+#TopBar .glyphicon-floppy-disk {
+  color: #9d9d9d;
+  cursor: default;
+}
+#TopBar.dirty .glyphicon-floppy-disk {
+  cursor: pointer;
+  color: #00b5ff;
+}
+#TopBar #load-label {
+  padding-top: 12px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+#TopBar .title-button {
+  font-size: 15px;
+}
+#TopBar .title-text {
+  font-size: 15px;
+}
+#TopBar label {
+  padding-top: 15px;
+}
+#TopBar input {
+  margin: 0px 5px 0px 0px;
+}
+
+.sidebar-offcanvas {
+  overflow-y: scroll;
+  height: calc(100vh - 60px);
+}
+
+#CasePage .table, #SetupPage .table {
+  table-layout: fixed;
+}
+
+#CasePage .flag-0 {
+  color: #ddd;
+}
+
+#Sidebar .flag-0 {
+  display: none;
+}
+
+#CasePage .flag-1, #Sidebar .flag-1 {
+  color: #444;
+}
+#CasePage .flag-2, #Sidebar .flag-2 {
+  color: #f44336;
+}
+#CasePage .flag-3, #Sidebar .flag-3 {
+  color: #4caf50;
+}
+
+#CasePage {
+  padding-left: 0;
+}
+#CasePage small {
+  color: #888;
+  padding-left: 15px;
+}
+#CasePage .flag-button {
+  width: 27px;
+  height: 27px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+#CasePage .table td, #CasePage .table th {
+  text-align: center;
+  vertical-align: middle;
+}
+#CasePage .table td.left, #CasePage .table th.left {
+  text-align: left;
+}
+#CasePage .unarbitrated-row {
+  outline: 2px solid #bf8181;
+  outline-offset: -1px;
+}
+#CasePage .unarbitrated-row:nth-child(even) {
+  background-color: #ffeeee;
+}
+#CasePage .unarbitrated-row:nth-child(odd) {
+  background-color: #ffdede;
+}
+#CasePage .hide-arbitrated .arbitrated-row {
+  display: none;
+}
+#CasePage .hide-blanks .blank-row {
+  display: none;
+}
+#CasePage .hide-arbitrated-container, #CasePage .hide-blanks-container {
+  font-size: 14px;
+  background-color: lightgray;
+  border: 2px solid darkgray;
+  padding: 10px;
+}
+#CasePage .accept-button {
+  font-weight: bold;
+  height: 40px;
+  width: 40px;
+}
+#CasePage .arbitrator-textbox {
+  height: 28px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
+#CasePage .arbitrate-button {
+  width: 80px;
+}
+#CasePage #auto-arbitrate-button {
+  margin-left: 5px;
+}
+#CasePage .coder-label {
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+#CasePage hr {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-top: 1px solid #5c5c5c;
+}
+#CasePage div.progress {
+  width: calc(100% - 20px);
+}
+#CasePage div.progress-container {
+  display: flex;
+  margin-top: 10px;
+}
+
+#SetupPage #normalizationTable, #SetupPage .form-group {
+  position: relative;
+  display: inline-block;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+#SetupPage .form-group {
+  width: 450px;
+}
+#SetupPage hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#SetupPage #normalizationTable td {
+  padding-right: 5px;
+}
+#SetupPage .editing-row {
+  outline: 2px solid #6eb5ff;
+  outline-offset: -1px;
+  background-color: #abdeff;
+}
+#SetupPage .adding-row td {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+#sidebarTd {
+  position: absolute;
+  width: 20%;
+}
+
+#Sidebar #no-cases {
+  font-style: italic;
+  font-color: #999;
+  padding-top: 15px;
+}
+#Sidebar li.partially-arbitrated {
+  border-left: 1px solid #03a9f4;
+}
+#Sidebar li.fully-arbitrated {
+  border-left: 2px solid #2196f3;
+}
+#Sidebar .case-link {
+  cursor: pointer;
+}
+#Sidebar .case-link.selected-case {
+  cursor: default;
+  background-color: #ccc;
+}
+#Sidebar .case-link:active {
+  background: #bbb;
+}
+#Sidebar hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+#Sidebar ul.nav-sidebar {
+  overflow-y: scroll;
+  position: absolute;
+  height: calc(100vh - 250px);
+  width: calc(100% - 15px);
+}
+
+.arb-tip {
+  color: #2e6da4;
+}

@@ -1,0 +1,37 @@
+<span class="sidebar-offcanvas" id="Sidebar" role="navigation" ng-controller="sidebarController">
+    <div class='sidebar-filters'>
+        <div class="form-check" ng-repeat="filter in filters">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" value="" ng-model='filter.value'>
+                {{filter.display}}
+            </label>
+        </div>
+        <div> <input type="text" class="form-control" ng-model="filterText" placeholder="Filter by name"></div>
+    </div>
+    <hr>
+    <span ng-if="getCases().length > 0">
+       <span id='case-count'> Displaying <b> {{filteredCases.length}} / {{getCases().length}} </b> </span>
+        <hr>
+    </span>
+    <span ng-if="getCases().length === 0">
+       <span id='no-cases'> No Cases </span>
+    </span>
+    <ul class="nav nav-sidebar">
+        <li class='active' 
+            ng-repeat="case in getCases() | filter:shouldDisplay as filteredCases"
+            ng-class="{
+                'double-coded': case.count > 1,
+                'single-coded': case.count == 1,
+                'fully-arbitrated': case.fullyArbitrated,
+                'partially-arbitrated': case.partiallyArbitrated,
+            }"
+        >
+            <a ng-click="switchToCase(case.id)"
+               class="case-link"
+               ng-class="isSelected(case.id) ? 'selected-case' : ''"> 
+               <span class="glyphicon glyphicon-flag" ng-class="'flag-' + case.flag" ></span> 
+               <span>{{case.displayText}}</span>
+            </a>
+        </li>
+    </ul>
+</span>

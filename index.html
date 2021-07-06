@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="Arbitrator" ng-controller="projectController">
+<head>
+    <meta charset="utf-8">
+    <title>{{project.name}}</title>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/papaparse/papaparse.min.js"></script>
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="dist/arbitration.js"></script>
+    <script src="dist/templates.js"></script>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="dist/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+<ng-include src="'dist/top-bar.html'"> </ng-include>
+
+<div id="main" class="container-fluid" ng-controller="pageController">
+    <table class="table">
+        <tr>
+            <td id="sidebarTd">
+                <!-- Sidebar -->
+                <ng-include src="'dist/side-bar.html'"> </ng-include>
+
+            </td>
+
+            <td style="width: 80%">
+                <!-- Setup Page -->
+                <ng-include ng-if='isOnSetup()' src="'dist/setup-page.html'"> </ng-include>
+                <ng-include ng-if='isOnCase()' src="'dist/case-page.html'"> </ng-include>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+
+</body>
+</html>

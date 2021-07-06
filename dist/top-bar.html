@@ -1,0 +1,62 @@
+<nav id="TopBar"
+     ng-class="dirty() ? 'dirty' : ''"
+     ng-controller='toolbarController'
+     class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <button class="button btn-link navbar-brand" ng-click="switchToSetup()">Rbitrator</button>
+            <button class="button btn-link navbar-brand title-button"
+                    ng-if="!editingTitle" ng-click="toggleEditing()">
+                {{project.name}}
+            </button>
+            <input type="text"
+                   ng-if="editingTitle" ng-blur="toggleEditing()"
+                   ng-change="markDirty()"
+                   class="button navbar-brand title-text"
+                   ng-model="project.name"/>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <input id="onlyIncludeCheck"
+                           class="checkbox-inline"
+                           type="checkbox"
+                           ng-model="onlyIncludeFullyArbitrated.value">
+                    <label for="onlyIncludeCheck"> Only export fully arbitrated cases </label>
+                </li>
+                <li>
+                    <a class="glyphicon glyphicon-save"
+                       title="Export Arbitrated Data"
+                       ng-click='export()'
+                       aria-hidden="true"></a>
+                </li>
+                <li>
+                    <a class="glyphicon glyphicon-equalizer"
+                       title="Intercoder Reliability"
+                       ng-click='exportReliability()'
+                       aria-hidden="true"></a>
+                </li>
+                <li>
+                    <a class="glyphicon glyphicon-floppy-disk"
+                       title="Save Project {{dirty() ? '' : '(No New Changes)'}}"
+                       ng-click='dirty() && save()'
+                       aria-hidden="true"></a>
+                </li>
+                <li>
+                    <label title="Load Existing Project" for="loadProjectButton" id="load-label">
+                        <i class="glyphicon glyphicon-folder-open"></i>
+                    </label>
+                    <input style="display:none" id="loadProjectButton" type="file" accept=".arb" file-reader class="form-control">
+                </li>
+                &nbsp
+                &nbsp
+            </ul>
+        </div>
+    </div>
+</nav>
