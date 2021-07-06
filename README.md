@@ -1,6 +1,8 @@
 # rbitrator-static
 
-To run:
+Hacky compiled version of [rbitrartor](https://github.com/astennent/arbitrator) intended for use by non-developers that just need to run it, not for development. 
+
+# To run:
 
 Step 1: Install node
 - https://nodejs.org/en/download/ (Tested on v14, may break in future versions)
