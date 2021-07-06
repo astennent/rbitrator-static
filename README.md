@@ -17,7 +17,7 @@ Step 3: Open a terminal at the folder.
 - On Mac: Right click the folder; Select `New terminal at folder`
 
 Step 4: Run the server
-- Type `node index.js`. It should respond with `Listening on 5000`
+- Type `node index.js` into the terminal and press enter. It should respond with `Listening on 5000`
 - If you see an error message like "node is not a command" then close the terminal, download node (Step 1), and open a new terminal after installing.
 
 Step 5: Open the page locally
