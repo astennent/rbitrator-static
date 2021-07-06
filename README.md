@@ -19,4 +19,4 @@ Step 4: Run the server
 - If you see an error message like "node is not a command" then close the terminal, download node (Step 1), and open a new terminal after installing.
 
 Step 5: Open the page locally
-- Navigate to [localhost:5000](localhost:5000)
+- Navigate to [http://localhost:5000](http://localhost:5000)
